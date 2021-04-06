@@ -19,7 +19,7 @@ const MainPage = () => {
    *
    * @param {Array} repos
    */
-  const paginateRepos = (repos = []) => {
+  const paginateRepos = (repos = [], size) => {
     const paginatedRepos = [];
 
     // Looping through all the repos
@@ -28,10 +28,19 @@ const MainPage = () => {
       const _repos = [];
 
       // Looping 10 times and grabbing the first 10 repos in the repo array
-      for (let x = 0; x < 10; x++) {
-        // Pushing the repo to `_repo` array
-        _repos.push(repos[x]);
+
+      if (size === undefined) {
+        for (let j = 0; j < 10; j++) {
+          // Pushing the repo to `_repo` array
+          _repos.push(repos[j]);
+        }
       }
+
+      for (let j = 0; j < size; j++) {
+        // Pushing the repo to `_repo` array
+        _repos.push(repos[j]);
+      }
+
 
       // Pushing the array that contains 10 objects to the `paginatedRepos` array
       paginatedRepos.push(_repos);

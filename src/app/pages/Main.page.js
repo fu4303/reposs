@@ -15,9 +15,11 @@ const MainPage = () => {
 
   /**
    * Here we're creating a paginated array
-   * which in fact is a two-dimensional holding 10 objects each
+   * which in fact is a two-dimensional holding 10 objects each.
+   * Size defines the number of repos that get paginated.
    *
-   * @param {Array} repos
+   * @param {Array} repos - Array of repos
+   * @param {Number} pagination - The batch of repos that gets paginated
    */
   const paginateRepos = (repos = [], size) => {
     const paginatedRepos = [];

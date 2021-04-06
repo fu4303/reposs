@@ -49,17 +49,6 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    const handle = window.addEventListener("scroll", () => {
-      if (window.scrollY <= window.innerHeight) {
-        const page = currentPage + 1;
-        setCurrentPage(page);
-      }
-    });
-
-    return window.removeEventListener("scroll", handle);
-  }, [currentPage]);
-
-  useEffect(() => {
     const fetchRepos = async () => {
       const { data, status } = await axios.get(
         "https://api.github.com/repositories"
@@ -79,7 +68,20 @@ const MainPage = () => {
     return () => {};
   }, []);
 
-  console.log(repos);
+  useEffect(() => {
+    const handle = window.addEventListener("scroll", () => {
+      if (
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight
+      ) {
+        return setCurrentPage(currentPage + 1);
+      }
+    });
+
+    return window.removeEventListener("scroll", handle);
+  });
+
+  console.log(currentPage);
 
   return (
     <MainLayout>
@@ -90,7 +92,7 @@ const MainPage = () => {
           </Center>
         ) : (
           <Stack px={[5, 50, 100, 150, 250, 300]} spacing={5}>
-            {repos[currentPage].map((repo) => {
+            {repos[currentPage]?.map((repo) => {
               return <Repository key={repo.id} data={repo} />;
             })}
           </Stack>

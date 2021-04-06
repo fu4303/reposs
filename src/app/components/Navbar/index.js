@@ -98,4 +98,4 @@ const Navbar = () => {
 	);
 };
 
-export default { Navbar, GitHubButton, Toggle, Buttons, SearchBox };
+export { Navbar, GitHubButton, Toggle, Buttons, SearchBox };

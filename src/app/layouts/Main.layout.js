@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/layout";
-import Navbar from "../components/Navbar";
+import { Navbar } from "../components/Navbar";
 
 const MainLayout = ({ ...rest }) => {
   return (

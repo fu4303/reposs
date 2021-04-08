@@ -40,6 +40,11 @@ const Repository = ({ data }) => {
                       {data?.name}
                     </Text>
                   </chakra.a>
+                  {/* <chakra.a href={data.owner.html_url} color={"black.400"}>
+                    <Text fontSize={"sm"} fontWeight={"semibold"}>
+                      Author: {data.owner.login}
+                    </Text>
+                  </chakra.a> */}
                   <Text
                     color={"gray.500"}
                     fontSize={"xs"}

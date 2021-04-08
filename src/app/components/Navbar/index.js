@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/button";
 import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
-import { Input } from "@chakra-ui/input";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Stack } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/layout";
 import { Box, Center, Flex, Spacer, Text } from "@chakra-ui/layout";
@@ -56,7 +56,13 @@ const Buttons = () => {
 const SearchBox = () => {
   return (
     <Center>
-      <Input placeholder={"Search..."} w={"full"} />
+      <InputGroup>
+         <InputLeftElement
+          pointerEvents="none"
+          children={<RiGithubFill/>}
+        /> 
+        <Input placeholder={"Search..."} w={"full"} variant="filled" />
+      </InputGroup>
     </Center>
   );
 };

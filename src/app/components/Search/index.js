@@ -10,6 +10,7 @@ import { RiFilter3Line, RiSearch2Line } from "react-icons/ri";
 import { generateApiUrl } from "../../utils/generateApiUrl";
 import { paginate } from "../../utils/paginate";
 import { shuffle } from "lodash";
+import { useParams } from "react-router";
 
 const Search = ({
   setRepos,
@@ -53,7 +54,9 @@ const Search = ({
         // Update fetching status
         setFetching(true);
         // Send an http request to github api
-        const { data } = await axios.get(generateApiUrl(query));
+        const { data } = await axios.get(
+          generateApiUrl(query, 1000, "desc", 20)
+        );
         // Update fetching status
         setFetching(false);
 
@@ -70,27 +73,19 @@ const Search = ({
 
   return (
     <Center>
-      {/* <Tooltip label={"We are working on it"}> */}
       <Stack direction={"row"}>
         <InputGroup>
           <Input
-            // isDisabled={true}
             placeholder={"Search..."}
             w={"full"}
             variant={"filled"}
-            onChange={(event) => searchRepos(event.target.value)}
+            onChange={async (event) => await searchRepos(event.target.value)}
           />
           <InputRightElement children={<RiSearch2Line />} />
         </InputGroup>
 
-        <Button
-          // isDisabled={true}
-          rightIcon={<RiFilter3Line />}
-        >
-          Filters
-        </Button>
+        <Button rightIcon={<RiFilter3Line />}>Filters</Button>
       </Stack>
-      {/* </Tooltip> */}
     </Center>
   );
 };

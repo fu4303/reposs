@@ -13,7 +13,7 @@
 
 - React
 - Axios
-- Chakra UI ~ [docs](https://chakra-ui.com/docs/)
+- Chakra UI ~ [docs](https://chakra-ui.com/)
 - GitHub API ~ [docs](https://docs.github.com/en/rest)
 
 

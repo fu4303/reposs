@@ -112,7 +112,7 @@ const MainPage = () => {
               <Center>
                 <Box w={"lg"}>
                   <Stack spacing={5}>
-                    <Search />
+                    <Search filteredRepos={filteredRepos} setFilteredRepos />
                   </Stack>
                 </Box>
               </Center>

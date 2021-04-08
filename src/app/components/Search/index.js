@@ -6,8 +6,26 @@ import { Stack } from "@chakra-ui/layout";
 import { Center } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { RiFilter3Line, RiGithubFill } from "react-icons/ri";
+import { useState } from "react";
 
-const Search = () => {
+const Search = ({ setRepos, repos, setFilteredRepos, filteredRepos }) => {
+  const [query, setQuery] = useState("");
+
+  const searchRepos = async (query, fRepos) => {
+    
+
+    console.log(fRepos);
+
+    const filtered = fRepos.filter((fRepos) => {
+      return fRepos?.toLowerCase().includes(query.toLowerCase());
+    });
+
+    if (query === undefined) return fRepos;
+
+    setFilteredRepos([]);
+    setFilteredRepos(filtered);
+  };
+
   return (
     <Center>
       <Tooltip label={"We are working on it"}>
@@ -19,6 +37,8 @@ const Search = () => {
               placeholder={"Search..."}
               w={"full"}
               variant={"filled"}
+              onChange={(e) => setQuery(e.target.value)}
+              onSubmit={searchRepos(query, filteredRepos)}
             />
           </InputGroup>
 

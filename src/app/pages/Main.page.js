@@ -74,7 +74,6 @@ const MainPage = () => {
       );
       // Paginating the response
       const paginated = paginate(data?.items);
-      console.log(paginated);
       // Setting the repos
       setRepos(paginated);
       // Updating fetch status
@@ -112,7 +111,6 @@ const MainPage = () => {
     if (currentPage + 1 < repos.length) {
       // Incrementing current page number
       currentPage += 1;
-      console.log({ currentPage, totalLength: repos.length });
       // Setting filtered repos
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     }

@@ -16,4 +16,4 @@ License: [https://github.com/michaelgrigoryan25/reposs/LICENSE](./LICENSE)
 
 <h2>For contributors</h2>
 
-<p>This section will be updated</p>
+<p> SEE: [Contributing Docs](./docs/CONTRIBUTING.md)</p>

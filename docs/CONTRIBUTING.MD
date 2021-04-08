@@ -40,7 +40,7 @@ your profile
 
 Switch to dev branch by running `git switch dev`
 
-Create a branch in your forked repo, name it dev-<your-name>-<number-of-patches>
+Create a branch in your forked repo, name it `dev-<your-name>-<number-of-patches>`
 
 *example: `dev-gitter499-0`*
 

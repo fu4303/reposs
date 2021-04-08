@@ -1,52 +1,96 @@
 import { Button } from "@chakra-ui/button";
-import { InputLeftElement } from "@chakra-ui/input";
+import { InputRightElement } from "@chakra-ui/input";
 import { Input } from "@chakra-ui/input";
 import { InputGroup } from "@chakra-ui/input";
 import { Stack } from "@chakra-ui/layout";
 import { Center } from "@chakra-ui/layout";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { RiFilter3Line, RiGithubFill } from "react-icons/ri";
-import { useState } from "react";
+import axios from "axios";
+// import { Tooltip } from "@chakra-ui/tooltip";
+import { RiFilter3Line, RiSearch2Line } from "react-icons/ri";
+import { generateApiUrl } from "../../utils/generateApiUrl";
+import { paginate } from "../../utils/paginate";
+import { shuffle } from "lodash";
 
-const Search = ({ setRepos, repos, setFilteredRepos, filteredRepos }) => {
-  const [query, setQuery] = useState("");
+const Search = ({
+  setRepos,
+  repos,
+  setFilteredRepos,
+  // filteredRepos,
+  // fetching,
+  setFetching,
+  currentPage,
+}) => {
+  /**
+   *
+   * @param {String} query
+   */
+  const searchRepos = async (query) => {
+    // If query is empty
+    if (query.length === 0) {
+      // Setting current page to 0
+      currentPage -= currentPage;
+      // Shuffling the updated repo array
+      setFilteredRepos(shuffle(shuffle(repos))[currentPage]);
+    } else {
+      // Filtered repo array
+      const filtered = [];
 
-  const searchRepos = async (query, fRepos) => {
-    
+      // Looping through paginated array
+      for (let i = 0; i < repos?.length; i++) {
+        // Looping through each array
+        for (let j = 0; j < repos[i]?.length; j++) {
+          // If repo name contains parts from query
+          if (
+            repos[i][j]?.name?.toLowerCase().includes(query.toLocaleLowerCase())
+          )
+            // Push the item to the filtered array
+            filtered.push(repos[i][j]);
+        }
+      }
 
-    console.log(fRepos);
+      // If there are no matching results
+      if (filtered.length === 0) {
+        // Update fetching status
+        setFetching(true);
+        // Send an http request to github api
+        const { data } = await axios.get(generateApiUrl(query));
+        // Update fetching status
+        setFetching(false);
 
-    const filtered = fRepos.filter((fRepos) => {
-      return fRepos?.toLowerCase().includes(query.toLowerCase());
-    });
+        // Pushing the items to the filtered array
+        filtered.push(...data?.items);
+        // Caching fetched repos
+        setRepos([...repos, ...paginate(data?.items)]);
+      }
 
-    if (query === undefined) return fRepos;
-
-    setFilteredRepos([]);
-    setFilteredRepos(filtered);
+      // Setting filtered repos to the filtered array
+      setFilteredRepos(filtered);
+    }
   };
 
   return (
     <Center>
-      <Tooltip label={"We are working on it"}>
-        <Stack direction={"row"}>
-          <InputGroup>
-            <InputLeftElement children={<RiGithubFill />} />
-            <Input
-              isDisabled={true}
-              placeholder={"Search..."}
-              w={"full"}
-              variant={"filled"}
-              onChange={(e) => setQuery(e.target.value)}
-              onSubmit={searchRepos(query, filteredRepos)}
-            />
-          </InputGroup>
+      {/* <Tooltip label={"We are working on it"}> */}
+      <Stack direction={"row"}>
+        <InputGroup>
+          <Input
+            // isDisabled={true}
+            placeholder={"Search..."}
+            w={"full"}
+            variant={"filled"}
+            onChange={(event) => searchRepos(event.target.value)}
+          />
+          <InputRightElement children={<RiSearch2Line />} />
+        </InputGroup>
 
-          <Button isDisabled={true} rightIcon={<RiFilter3Line />}>
-            Filters
-          </Button>
-        </Stack>
-      </Tooltip>
+        <Button
+          // isDisabled={true}
+          rightIcon={<RiFilter3Line />}
+        >
+          Filters
+        </Button>
+      </Stack>
+      {/* </Tooltip> */}
     </Center>
   );
 };

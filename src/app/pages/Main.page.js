@@ -77,10 +77,8 @@ const MainPage = () => {
       currentPage += 1;
       // Setting filtered repos
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
+    } else {
     }
-
-    // Cleanup
-    return () => {};
   });
 
   return (
@@ -112,7 +110,15 @@ const MainPage = () => {
               <Center>
                 <Box w={"lg"}>
                   <Stack spacing={5}>
-                    <Search filteredRepos={filteredRepos} setFilteredRepos />
+                    <Search
+                      // filteredRepos={filteredRepos}
+                      setFilteredRepos={setFilteredRepos}
+                      repos={repos}
+                      setRepos={setRepos}
+                      // fetching={fetching}
+                      setFetching={setFetching}
+                      currentPage={currentPage}
+                    />
                   </Stack>
                 </Box>
               </Center>

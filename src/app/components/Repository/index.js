@@ -76,10 +76,8 @@ const Repository = ({ data }) => {
                       size={"md"}
                       _hover={{
                         opacity: 0.6,
-                        transform: "scale(1.3)",
-                        transition: "all .2s ease-in-out",
                       }}
-                      transition={"all .2s ease-in-out"}
+                      transition={"all 0.2s ease-in-out"}
                       borderRadius={"full"}
                       src={data?.owner?.avatar_url}
                     />
@@ -154,7 +152,7 @@ const Repository = ({ data }) => {
                       <chakra.span fontWeight={"bold"}>
                         {data?.forks_count}
                       </chakra.span>{" "}
-                      forks
+                      forks 🍴
                     </LinkBox>
                     <LinkBox href={`${data?.html_url}/watchers`}>
                       <chakra.span fontWeight={"bold"}>

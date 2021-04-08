@@ -25,16 +25,26 @@ const LinkBox = ({ href: url, children }) => {
       borderRadius={"md"}
       // borderColor={useColorModeValue("gray.300", "gray.700")}
       borderColor={"gray.300"}
-      fontSize={["x-small", "xs"]}
       w={"fit-content"}
       href={url}
     >
-      <Text fontWeight={"semibold"}>{children}</Text>
+      <Text
+        fontSize={["x-small", "x-small", "x-small", "xs"]}
+        fontWeight={"semibold"}
+      >
+        {children}
+      </Text>
     </chakra.a>
   );
 };
 
 const Repository = ({ data }) => {
+  const average_grade =
+    data?.stargazers_count +
+    data?.forks_count +
+    data?.watchers +
+    data?.open_issues_count / 4;
+
   return (
     <Box
       border={"2px"}
@@ -90,6 +100,7 @@ const Repository = ({ data }) => {
                   >
                     <Text fontSize={["sm", "lg", "xl"]} fontWeight={"bold"}>
                       {data?.name}
+                      {average_grade >= 400 * 1000 && "🔥"}
                     </Text>
                   </chakra.a>
 

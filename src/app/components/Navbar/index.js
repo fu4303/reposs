@@ -106,7 +106,7 @@ const Navbar = () => {
       borderBottom={"2px"}
       transition={"ease-in-out 200ms"}
       px={[3, 50, 100, 150, 250, 300]}
-      boxShadow={scrolled ? "lg" : null}
+      boxShadow={scrolled ? "md" : null}
       bgColor={"gray.50"}
       borderColor={"gray.100"}
       // bgColor={useColorModeValue("gray.50", "gray.700")}

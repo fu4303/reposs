@@ -86,11 +86,10 @@ const Navbar = () => {
       bgColor={useColorModeValue("gray.50", "gray.700")}
       borderColor={useColorModeValue("gray.100", "gray.800")}
     >
-      <Box transition={"ease-in-out 100ms"} p={scrolled ? 1 : null}>
+      <Box transition={"ease-in-out 150ms"} p={scrolled ? 1 : null}>
         <Flex>
           <Title />
           <Spacer />
-
           <Buttons />
         </Flex>
       </Box>

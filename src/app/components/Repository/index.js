@@ -27,7 +27,7 @@ const Repository = ({ data }) => {
                 <Avatar
                   size={"md"}
                   borderRadius={"full"}
-                  src={data.owner.avatar_url}
+                  src={data?.owner.avatar_url}
                 />
               </Center>
             </Box>
@@ -35,9 +35,9 @@ const Repository = ({ data }) => {
             <Box>
               <Stack spacing={1}>
                 <Box>
-                  <chakra.a color={"blue.400"} href={data.html_url}>
+                  <chakra.a color={"blue.400"} href={data?.html_url}>
                     <Text fontSize={"xl"} fontWeight={"bold"}>
-                      {data.name}
+                      {data?.name}
                     </Text>
                   </chakra.a>
                   <Text
@@ -45,25 +45,19 @@ const Repository = ({ data }) => {
                     fontSize={"xs"}
                     fontWeight={"semibold"}
                   >
-                    {data.full_name}
+                    {data?.full_name}
                   </Text>
                 </Box>
 
                 <Box>
                   <Text fontSize={"sm"} fontWeight={"semibold"}>
-                    {data.description}
+                    {data?.description}
                   </Text>
                 </Box>
               </Stack>
             </Box>
           </Stack>
         </Box>
-      </Box>
-
-      <Box>
-        <Stack>
-          <Text></Text>
-        </Stack>
       </Box>
     </Box>
   );

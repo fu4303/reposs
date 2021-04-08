@@ -7,7 +7,9 @@ const MainLayout = ({ ...rest }) => {
       {/* Sticky navbar */}
       <Navbar />
       {/* Nested stuff */}
-      <Box mt={10}>{rest.children}</Box>
+      <Box px={[5, 50, 100, 150, 250, 300]} my={10}>
+        {rest.children}
+      </Box>
     </Box>
   );
 };

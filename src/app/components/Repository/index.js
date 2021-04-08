@@ -71,7 +71,7 @@ const Repository = ({ data }) => {
                       }}
                       transition={"all .2s ease-in-out"}
                       borderRadius={"full"}
-                      src={data?.owner.avatar_url}
+                      src={data?.owner?.avatar_url}
                     />
                   </chakra.a>
                 </Tooltip>

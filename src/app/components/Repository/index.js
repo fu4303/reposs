@@ -48,7 +48,7 @@ const Repository = ({ data }) => {
         <Box>
           <Stack spacing={4} direction={"row"}>
             {/* Owner Information Container */}
-            <Box>
+            <Box >
               <Center>
                 <Tooltip label={`Visit ${data?.owner?.login}'s profile`}>
                   <chakra.a
@@ -60,7 +60,10 @@ const Repository = ({ data }) => {
                       size={"md"}
                       _hover={{
                         opacity: 0.6,
+                        transform: 'scale(1.3)',
+                        transition: 'all .2s ease-in-out'
                       }}
+                      transition={'all .2s ease-in-out'}
                       borderRadius={"full"}
                       src={data?.owner.avatar_url}
                     />

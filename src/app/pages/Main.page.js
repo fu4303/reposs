@@ -15,41 +15,7 @@ import { chakra } from "@chakra-ui/system";
 import { Link } from "react-router-dom";
 import { Image } from "@chakra-ui/image";
 import { Tooltip } from "@chakra-ui/tooltip";
-// import { Slider } from "@chakra-ui/slider";
-// import { SliderFilledTrack } from "@chakra-ui/slider";
-// import { SliderThumb } from "@chakra-ui/slider";
-// import { SliderTrack } from "@chakra-ui/slider";
-// import { RiStarFill } from "react-icons/ri";
-// import { useColorModeValue } from "@chakra-ui/color-mode";
-
-// const StarSlider = () => {
-//   const [stars, setStars] = useState(100);
-
-//   return (
-//     <Box>
-//       <Slider
-//         min={50}
-//         max={500}
-//         step={50}
-//         defaultValue={stars}
-//         colorScheme={"yellow"}
-//         onChange={(value) => setStars(value)}
-//       >
-//         <SliderTrack>
-//           <SliderFilledTrack />
-//         </SliderTrack>
-//         <SliderThumb boxSize={6}>
-//           <Box
-//             color={useColorModeValue("yellow.500", "yellow.300")}
-//             as={RiStarFill}
-//           />
-//         </SliderThumb>
-//       </Slider>
-
-//       <Text>Stars: {stars}</Text>
-//     </Box>
-//   );
-// };
+import { generateApiUrl } from "../utils/generateApiUrl";
 
 /**
  * This variable is created for keeping track of current page
@@ -69,9 +35,7 @@ const MainPage = () => {
   fetchRepos.current = async () => {
     try {
       // Request to GitHub API
-      const { data } = await axios.get(
-        "https://api.github.com/search/repositories?q=stars:%3E=1000&sort=stars&order=desc&per_page=50"
-      );
+      const { data } = await axios.get(generateApiUrl());
       // Paginating the response
       const paginated = paginate(data?.items);
       // Setting the repos

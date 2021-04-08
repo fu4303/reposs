@@ -11,6 +11,9 @@ import Repository from "../components/Repository";
 import { useBottomScrollListener } from "react-bottom-scroll-listener";
 import { Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
+import { chakra } from "@chakra-ui/system";
+import { Link } from "react-router-dom";
+import { Image } from "@chakra-ui/image";
 // import { Slider } from "@chakra-ui/slider";
 // import { SliderFilledTrack } from "@chakra-ui/slider";
 // import { SliderThumb } from "@chakra-ui/slider";
@@ -47,12 +50,13 @@ import { useToast } from "@chakra-ui/toast";
 //   );
 // };
 
+let currentPage = 0;
+
 const MainPage = () => {
   const toast = useToast();
   const fetchRepos = useRef(() => {});
   const [repos, setRepos] = useState([]);
   const [fetching, setFetching] = useState(true);
-  let [currentPage, setCurrentPage] = useState(0);
   const [filteredRepos, setFilteredRepos] = useState([]);
 
   fetchRepos.current = async () => {
@@ -98,10 +102,10 @@ const MainPage = () => {
 
   // When the user has reached the end of the page
   useBottomScrollListener(() => {
-    if (currentPage++ < repos.length) {
+    if (currentPage + 1 < repos.length) {
       // Incrementing current page number
-      setCurrentPage(currentPage++);
-      console.log({ currentPage });
+      currentPage += 1;
+      console.log({ currentPage, totalLength: repos.length });
       // Setting filtered repos
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     }
@@ -113,36 +117,56 @@ const MainPage = () => {
   return (
     <MainLayout>
       <Box>
-        <Stack spacing={10}>
-          <Box>
-            <Center>
-              <Box w={"lg"}>
-                <Stack spacing={5}>
-                  <Search />
-                </Stack>
-              </Box>
-            </Center>
-          </Box>
+        <Stack spacing={5}>
+          <Center>
+            <Image borderRadius={"full"} />
+          </Center>
 
-          <Box>
-            {fetching ? (
+          <Center>
+            <Text fontSize={["lg", "xl", "2xl"]} fontWeight={"semibold"}>
+              Discover repositories with{" "}
+              <chakra.a
+                as={Link}
+                to={"/"}
+                fontWeight={"bold"}
+                textDecor={"underline"}
+              >
+                reposs
+              </chakra.a>
+            </Text>
+          </Center>
+
+          <Stack spacing={10}>
+            <Box>
               <Center>
-                <Spinner />
+                <Box w={"lg"}>
+                  <Stack spacing={5}>
+                    <Search />
+                  </Stack>
+                </Box>
               </Center>
-            ) : filteredRepos?.length === 0 || repos?.length === 0 ? (
-              <Center>
-                <Text fontWeight={"semibold"} fontSize={"lg"}>
-                  Nope, nothing here 🤔
-                </Text>
-              </Center>
-            ) : (
-              <Stack spacing={5}>
-                {filteredRepos?.map((repo) => {
-                  return <Repository key={repo?.id} data={repo} />;
-                })}
-              </Stack>
-            )}
-          </Box>
+            </Box>
+
+            <Box>
+              {fetching ? (
+                <Center>
+                  <Spinner />
+                </Center>
+              ) : filteredRepos?.length === 0 || repos?.length === 0 ? (
+                <Center>
+                  <Text fontWeight={"semibold"} fontSize={"lg"}>
+                    Nope, nothing here 🤔
+                  </Text>
+                </Center>
+              ) : (
+                <Stack spacing={5}>
+                  {filteredRepos?.map((repo) => {
+                    return <Repository key={repo?.id} data={repo} />;
+                  })}
+                </Stack>
+              )}
+            </Box>
+          </Stack>
         </Stack>
       </Box>
     </MainLayout>

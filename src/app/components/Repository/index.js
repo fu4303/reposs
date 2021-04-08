@@ -39,7 +39,7 @@ const Repository = ({ data }) => {
       p={5}
       _hover={{
         boxShadow: "lg",
-        transform: "translateY(-10px)"
+        transform: "translateY(-10px)",
       }}
       transition={"ease-in-out 150ms"}
       bgColor={useColorModeValue("gray.50", "gray.900")}
@@ -123,6 +123,12 @@ const Repository = ({ data }) => {
                         {data?.forks_count}
                       </chakra.span>{" "}
                       forks
+                    </LinkBox>
+                    <LinkBox href={`${data?.html_url}/watchers`}>
+                      <chakra.span fontWeight={"bold"}>
+                        {data?.watchers}
+                      </chakra.span>{" "}
+                      watchers 👀
                     </LinkBox>
                   </Stack>
                 </Box>

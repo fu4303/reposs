@@ -4,8 +4,6 @@
 
 <h2 align="center">reposs - Interactive GitHub repository search</h2>
 
-<hr />
-
 <p>
 reposs is an open-source and interactive repository search web application that aims to make it easier for developers to discover open-source projects on GitHub
 </p>

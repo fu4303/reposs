@@ -16,4 +16,4 @@ License: [https://github.com/michaelgrigoryan25/reposs/LICENSE](./LICENSE)
 
 <h2>For contributors</h2>
 
-<p> SEE: [Contributing Docs](https://github.com/michaelgrigoryan25/reposs/tree/dev/docs/CONTRIBUTING.md)</p>
+SEE: [Contributing Docs](https://github.com/michaelgrigoryan25/reposs/blob/dev/docs/CONTRIBUTING.md)

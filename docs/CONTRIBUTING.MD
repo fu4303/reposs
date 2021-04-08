@@ -13,8 +13,8 @@
 
 - React
 - Axios
-- Chakra UI ~ [docs]("https://chakra-ui.com/docs/")
-- GitHub API ~ [docs]("https://docs.github.com/en/rest")
+- Chakra UI ~ [docs](https://chakra-ui.com/docs/)
+- GitHub API ~ [docs](https://docs.github.com/en/rest)
 
 
 ## Step 0: Clone project into local directory
@@ -33,7 +33,7 @@ Then, test to make sure running version is working properly
 
 ## Step 2: Fork the repo
 
-Use this [link]("https://github.com/MichaelGrigoryan25/reposs") to fork the repo to
+Use this [link](https://github.com/MichaelGrigoryan25/reposs) to fork the repo to
 your profile
 
 ## Step 4: Add your remote branch

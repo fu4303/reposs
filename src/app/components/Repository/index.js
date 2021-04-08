@@ -66,7 +66,7 @@ const Repository = ({ data }) => {
                       }}
                       transition={"all .2s ease-in-out"}
                       borderRadius={"full"}
-                      src={data?.owner.avatar_url}
+                      src={data?.owner?.avatar_url}
                     />
                   </chakra.a>
                 </Tooltip>
@@ -88,7 +88,7 @@ const Repository = ({ data }) => {
                     </Text>
                     
                   </chakra.a>
-                  <Badge color={"black.200"} rounded={'md'} mb={'-0.5'} mt={'-1.5'}>Owner: {data.owner.type}</Badge>
+                  <Badge color={"black.200"} rounded={'md'} mb={'-0.5'} mt={'-1.5'}>Owner: {data?.owner?.type}</Badge>
 
                   <Text
                     color={"gray.500"}

@@ -4,6 +4,7 @@ import { Stack } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/layout";
 import { Box, Center, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
+import { Image } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
   RiMoonFill,
@@ -16,6 +17,7 @@ import { NavLink } from "react-router-dom";
 const Title = () => {
   return (
     <Center as={NavLink} to={"/"}>
+      <Image src={"/logo512.png"} w={30} h={30} mr={2} borderRadius={"full"} />
       <Text fontWeight={"semibold"} fontSize={"xl"}>
         reposs
       </Text>

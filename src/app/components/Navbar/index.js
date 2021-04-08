@@ -1,14 +1,14 @@
 import { IconButton } from "@chakra-ui/button";
-import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
+// import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
 import { Stack } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/layout";
 import { Box, Center, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import React, { useEffect, useState } from "react";
 import {
-  RiMoonFill,
+  // RiMoonFill,
   RiGithubFill,
-  RiSunFill,
+  // RiSunFill,
   RiDiscordFill,
 } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
@@ -23,21 +23,21 @@ const Title = () => {
   );
 };
 
-const Toggle = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  return (
-    <Center>
-      <Tooltip label={"Toggle theme"}>
-        <IconButton
-          icon={colorMode === "light" ? <RiMoonFill /> : <RiSunFill />}
-          onClick={toggleColorMode}
-          size={"md"}
-          isRound
-        />
-      </Tooltip>
-    </Center>
-  );
-};
+// const Toggle = () => {
+//   const { colorMode, toggleColorMode } = useColorMode();
+//   return (
+//     <Center>
+//       <Tooltip label={"Toggle theme"}>
+//         <IconButton
+//           icon={colorMode === "light" ? <RiMoonFill /> : <RiSunFill />}
+//           onClick={toggleColorMode}
+//           size={"md"}
+//           isRound
+//         />
+//       </Tooltip>
+//     </Center>
+//   );
+// };
 
 const GitHubButton = () => {
   return (
@@ -77,7 +77,7 @@ const Buttons = () => {
       <Stack direction={"row"}>
         <DiscordButton />
         <GitHubButton />
-        <Toggle />
+        {/* <Toggle /> */}
       </Stack>
     </Box>
   );
@@ -105,8 +105,10 @@ const Navbar = () => {
       transition={"ease-in-out 200ms"}
       px={[3, 50, 100, 150, 250, 300]}
       boxShadow={scrolled ? "lg" : null}
-      bgColor={useColorModeValue("gray.50", "gray.700")}
-      borderColor={useColorModeValue("gray.100", "gray.800")}
+      bgColor={"gray.50"}
+      borderColor={"gray.100"}
+      // bgColor={useColorModeValue("gray.50", "gray.700")}
+      // borderColor={useColorModeValue("gray.100", "gray.800")}
     >
       <Box transition={"ease-in-out 150ms"} p={scrolled ? 1 : null}>
         <Flex>

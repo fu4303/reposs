@@ -1,5 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
-import { useColorModeValue } from "@chakra-ui/color-mode";
+// import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Center } from "@chakra-ui/layout";
 import { Stack } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/layout";
@@ -15,13 +15,16 @@ const LinkBox = ({ href: url, children }) => {
       p={[1, 1.5]}
       target={"_blank"}
       rel={"noopener noreferrer"}
-      bgColor={useColorModeValue("gray.100", "gray.600")}
+      // bgColor={useColorModeValue("gray.100", "gray.600")}
+      bgColor={"gray.100"}
       border={"1px"}
       _hover={{
-        bgColor: useColorModeValue("gray.300", "gray.700"),
+        // bgColor: useColorModeValue("gray.300", "gray.700"),
+        bgColor: "gray.300",
       }}
       borderRadius={"md"}
-      borderColor={useColorModeValue("gray.300", "gray.700")}
+      // borderColor={useColorModeValue("gray.300", "gray.700")}
+      borderColor={"gray.300"}
       fontSize={["x-small", "xs"]}
       w={"fit-content"}
       href={url}
@@ -35,7 +38,8 @@ const Repository = ({ data }) => {
   return (
     <Box
       border={"2px"}
-      borderColor={useColorModeValue("gray.100", "gray.600")}
+      // borderColor={useColorModeValue("gray.100", "gray.600")}
+      borderColor={"gray.100"}
       borderRadius={"lg"}
       p={5}
       _hover={{
@@ -43,7 +47,8 @@ const Repository = ({ data }) => {
         transform: "translateY(-10px)",
       }}
       transition={"ease-in-out 150ms"}
-      bgColor={useColorModeValue("gray.50", "gray.900")}
+      // bgColor={useColorModeValue("gray.50", "gray.900")}
+      bgColor={"gray.50"}
     >
       <Box>
         <Box>
@@ -86,9 +91,19 @@ const Repository = ({ data }) => {
                     <Text fontSize={["sm", "lg", "xl"]} fontWeight={"bold"}>
                       {data?.name}
                     </Text>
-                    
                   </chakra.a>
-                  <Badge color={"black.200"} rounded={'md'} mb={'-0.5'} mt={'-1.5'}>Owner: {data.owner.type}</Badge>
+
+                  {data?.owner?.type === "Organization" && (
+                    <Badge
+                      colorScheme={"blue"}
+                      color={"black.200"}
+                      rounded={"md"}
+                      mb={-0.5}
+                      mt={-2}
+                    >
+                      {data?.owner?.type}
+                    </Badge>
+                  )}
 
                   <Text
                     color={"gray.500"}

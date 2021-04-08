@@ -119,7 +119,7 @@ const MainPage = () => {
       <Box>
         <Stack spacing={5}>
           <Center>
-            <Image borderRadius={"full"} />
+            <Image src={"/logo512.png"} w={20} h={20} borderRadius={"full"} />
           </Center>
 
           <Center>

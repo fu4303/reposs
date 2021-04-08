@@ -1,11 +1,10 @@
 import { IconButton } from "@chakra-ui/button";
 import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Stack } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/layout";
 import { Box, Center, Flex, Spacer, Text } from "@chakra-ui/layout";
-import { useEffect, useState } from "react";
-import { RiMoonFill, RiSunLine, RiGithubFill } from "react-icons/ri";
+import React, { useEffect, useState } from "react";
+import { RiMoonFill, RiGithubFill, RiSunFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 
 const Title = () => {
@@ -22,7 +21,7 @@ const Toggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <IconButton
-      icon={colorMode === "light" ? <RiSunLine /> : <RiMoonFill />}
+      icon={colorMode === "light" ? <RiMoonFill /> : <RiSunFill />}
       onClick={toggleColorMode}
       size={"md"}
       isRound
@@ -35,7 +34,7 @@ const GitHubButton = () => {
     <Link
       target={"_blank"}
       rel={"noopener noreferrer"}
-      href={"https://github.com"}
+      href={"https://github.com/MichaelGrigoryan25/reposs"}
     >
       <IconButton icon={<RiGithubFill />} isRound size={"md"} />
     </Link>
@@ -50,20 +49,6 @@ const Buttons = () => {
         <Toggle />
       </Stack>
     </Box>
-  );
-};
-
-const SearchBox = () => {
-  return (
-    <Center>
-      <InputGroup>
-         <InputLeftElement
-          pointerEvents="none"
-          children={<RiGithubFill/>}
-        /> 
-        <Input placeholder={"Search..."} w={"full"} variant="filled" />
-      </InputGroup>
-    </Center>
   );
 };
 
@@ -103,4 +88,4 @@ const Navbar = () => {
   );
 };
 
-export { Navbar, GitHubButton, Toggle, Buttons, SearchBox };
+export { Navbar };

@@ -39,6 +39,7 @@ const Repository = ({ data }) => {
       p={5}
       _hover={{
         boxShadow: "lg",
+        transform: "translateY(-10px)"
       }}
       transition={"ease-in-out 150ms"}
       bgColor={useColorModeValue("gray.50", "gray.900")}

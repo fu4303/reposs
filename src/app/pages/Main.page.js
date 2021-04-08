@@ -14,6 +14,7 @@ import { useToast } from "@chakra-ui/toast";
 import { chakra } from "@chakra-ui/system";
 import { Link } from "react-router-dom";
 import { Image } from "@chakra-ui/image";
+import { Tooltip } from "@chakra-ui/tooltip";
 // import { Slider } from "@chakra-ui/slider";
 // import { SliderFilledTrack } from "@chakra-ui/slider";
 // import { SliderThumb } from "@chakra-ui/slider";
@@ -50,6 +51,12 @@ import { Image } from "@chakra-ui/image";
 //   );
 // };
 
+/**
+ * This variable is created for keeping track of current page
+ *
+ * Note:
+ * It's put here on purpose
+ */
 let currentPage = 0;
 
 const MainPage = () => {
@@ -119,7 +126,9 @@ const MainPage = () => {
       <Box>
         <Stack spacing={5}>
           <Center>
-            <Image src={"/logo512.png"} w={20} h={20} borderRadius={"full"} />
+            <Tooltip label={"Guess you like the logo 🤩"}>
+              <Image src={"/logo512.png"} w={20} h={20} borderRadius={"full"} />
+            </Tooltip>
           </Center>
 
           <Center>

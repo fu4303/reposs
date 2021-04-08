@@ -3,8 +3,14 @@ import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
 import { Stack } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/layout";
 import { Box, Center, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Tooltip } from "@chakra-ui/tooltip";
 import React, { useEffect, useState } from "react";
-import { RiMoonFill, RiGithubFill, RiSunFill } from "react-icons/ri";
+import {
+  RiMoonFill,
+  RiGithubFill,
+  RiSunFill,
+  RiDiscordFill,
+} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 
 const Title = () => {
@@ -20,24 +26,48 @@ const Title = () => {
 const Toggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <IconButton
-      icon={colorMode === "light" ? <RiMoonFill /> : <RiSunFill />}
-      onClick={toggleColorMode}
-      size={"md"}
-      isRound
-    />
+    <Center>
+      <Tooltip label={"Toggle theme"}>
+        <IconButton
+          icon={colorMode === "light" ? <RiMoonFill /> : <RiSunFill />}
+          onClick={toggleColorMode}
+          size={"md"}
+          isRound
+        />
+      </Tooltip>
+    </Center>
   );
 };
 
 const GitHubButton = () => {
   return (
-    <Link
-      target={"_blank"}
-      rel={"noopener noreferrer"}
-      href={"https://github.com/MichaelGrigoryan25/reposs"}
-    >
-      <IconButton icon={<RiGithubFill />} isRound size={"md"} />
-    </Link>
+    <Center>
+      <Tooltip label={"GitHub"}>
+        <Link
+          target={"_blank"}
+          rel={"noopener noreferrer"}
+          href={"https://github.com/MichaelGrigoryan25/reposs"}
+        >
+          <IconButton icon={<RiGithubFill />} isRound size={"md"} />
+        </Link>
+      </Tooltip>
+    </Center>
+  );
+};
+
+const DiscordButton = () => {
+  return (
+    <Center>
+      <Tooltip label={"Discord Server"}>
+        <Link
+          target={"_blank"}
+          rel={"noopener noreferrer"}
+          href={"https://discord.gg/tdSZpqgBbg"}
+        >
+          <IconButton icon={<RiDiscordFill />} isRound size={"md"} />
+        </Link>
+      </Tooltip>
+    </Center>
   );
 };
 
@@ -45,6 +75,7 @@ const Buttons = () => {
   return (
     <Box>
       <Stack direction={"row"}>
+        <DiscordButton />
         <GitHubButton />
         <Toggle />
       </Stack>
@@ -72,7 +103,7 @@ const Navbar = () => {
       zIndex={"sticky"}
       borderBottom={"2px"}
       transition={"ease-in-out 200ms"}
-      px={[5, 50, 100, 150, 250, 300]}
+      px={[3, 50, 100, 150, 250, 300]}
       boxShadow={scrolled ? "lg" : null}
       bgColor={useColorModeValue("gray.50", "gray.700")}
       borderColor={useColorModeValue("gray.100", "gray.800")}

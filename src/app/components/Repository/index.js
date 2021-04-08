@@ -6,6 +6,7 @@ import { Text } from "@chakra-ui/layout";
 import { Box } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import { Tooltip } from "@chakra-ui/tooltip";
+import { Badge } from "@chakra-ui/react";
 // import { GoRepoForked, GoIssueOpened, GoStar } from "react-icons/go";
 
 const LinkBox = ({ href: url, children }) => {
@@ -48,7 +49,7 @@ const Repository = ({ data }) => {
         <Box>
           <Stack spacing={4} direction={"row"}>
             {/* Owner Information Container */}
-            <Box >
+            <Box>
               <Center>
                 <Tooltip label={`Visit ${data?.owner?.login}'s profile`}>
                   <chakra.a
@@ -60,10 +61,10 @@ const Repository = ({ data }) => {
                       size={"md"}
                       _hover={{
                         opacity: 0.6,
-                        transform: 'scale(1.3)',
-                        transition: 'all .2s ease-in-out'
+                        transform: "scale(1.3)",
+                        transition: "all .2s ease-in-out",
                       }}
-                      transition={'all .2s ease-in-out'}
+                      transition={"all .2s ease-in-out"}
                       borderRadius={"full"}
                       src={data?.owner.avatar_url}
                     />
@@ -85,7 +86,9 @@ const Repository = ({ data }) => {
                     <Text fontSize={["sm", "lg", "xl"]} fontWeight={"bold"}>
                       {data?.name}
                     </Text>
+                    
                   </chakra.a>
+                  <Badge color={"black.200"} rounded={'md'} mb={'-0.5'} mt={'-1.5'}>Owner: {data.owner.type}</Badge>
 
                   <Text
                     color={"gray.500"}

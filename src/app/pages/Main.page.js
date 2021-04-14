@@ -12,17 +12,11 @@ import { useBottomScrollListener } from "react-bottom-scroll-listener";
 import { Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import { chakra } from "@chakra-ui/system";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Image } from "@chakra-ui/image";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { generateApiUrl } from "../utils/generateApiUrl";
 
-/**
- * This variable is created for keeping track of current page
- *
- * Note:
- * It's put here on purpose
- */
 let currentPage = 0;
 
 const MainPage = () => {
@@ -72,19 +66,20 @@ const MainPage = () => {
 
   // When the user has reached the end of the page
   useBottomScrollListener(async () => {
+    // Incrementing current page number
+    currentPage += 1;
+
     if (currentPage + 1 < repos.length) {
-      // Incrementing current page number
-      currentPage += 1;
       // Setting filtered repos
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     } else {
-      // TODO: Make this code executed when scrolled to the end of the page when no results remain
-      currentPage += 1;
       const { data } = await axios.get(generateApiUrl("", 1000, "desc", 20));
       setRepos([...repos, ...paginate(data?.items)]);
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     }
   });
+
+  console.log({ repos, filteredRepos, currentPage });
 
   return (
     <MainLayout>

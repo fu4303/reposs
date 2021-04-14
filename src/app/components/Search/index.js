@@ -10,7 +10,6 @@ import { RiFilter3Line, RiSearch2Line } from "react-icons/ri";
 import { generateApiUrl } from "../../utils/generateApiUrl";
 import { paginate } from "../../utils/paginate";
 import { shuffle } from "lodash";
-import { useParams } from "react-router";
 
 const Search = ({
   setRepos,

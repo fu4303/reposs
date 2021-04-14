@@ -21,10 +21,10 @@ const paginate = (arr = [], size = 10) => {
     let mutablePaginatedArray = [];
 
     // Looping through the array
-    for (let x = 0; x < arr.length; x++) {
+    arr.forEach((sub) => {
       if (mutableSize < size) {
         // Pusing the object
-        mutablePaginatedArray.push(arr[x]);
+        mutablePaginatedArray.push(sub);
         // Incrementing the size
         mutableSize++;
       } else {
@@ -35,7 +35,7 @@ const paginate = (arr = [], size = 10) => {
         // Setting the size to 0
         mutableSize = 0;
       }
-    }
+    });
 
     // Returing the array
     return paginatedArray;

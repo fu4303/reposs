@@ -186,17 +186,21 @@ const Repository = ({ data }) => {
                     <LinkBox href={`${data?.html_url}/network/members`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.forks_count}
+                       
                       </chakra.span>{" "}
                       forks 🍴
                     </LinkBox>
 
                     {/* Watchers container */}
-                    <LinkBox href={`${data?.html_url}/watchers`}>
+                    {/* <LinkBox href={`${data?.html_url}/watchers`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.watchers}
                       </chakra.span>{" "}
                       watchers 👀
-                    </LinkBox>
+                    </LinkBox> */}
+
+                    {/* // ! BUG: Github API v3 does not return the watch count, the watchers value is the same as the stars.
+                    // Github API only gives subscribers_count on users, not repos */}
 
                     {/* Deployments container */}
                     <LinkBox href={`${data?.html_url}/deployments`}>

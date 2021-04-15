@@ -4,8 +4,8 @@
  */
 
 import axios from "axios";
-import linkBuilder from "../utils/linkBuilder";
-import { baseLink } from "./constants";
+import { linkBuilder } from "../utils/linkBuilder";
+import baseLink from "./constants";
 
 // For fetching some random repos
 export const getRepos = async () => {
@@ -44,3 +44,4 @@ export const getRepoLangs = async (repo, owner) => {
   );
   return data;
 };
+

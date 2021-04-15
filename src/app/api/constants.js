@@ -1,5 +1,3 @@
-const constants = {
-  baseLink: "https://api.github.com/",
-};
+const baseLink = "https://api.github.com/";
 
-export default constants;
+export default baseLink;

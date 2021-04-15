@@ -61,8 +61,8 @@ const Repository = ({ data }) => {
   // For fetching all of the repository data
   const fetchRepositoryData = async () => {
     const [repoLanguages, repoReadme] = await Promise.all([
-      getRepoLangs(),
-      getRepoReadme(),
+      getRepoLangs(data?.name, data?.owner.login),
+      getRepoReadme(data?.name, data?.owner.login),
     ]);
 
     return () => {
@@ -186,7 +186,6 @@ const Repository = ({ data }) => {
                     <LinkBox href={`${data?.html_url}/network/members`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.forks_count}
-                       
                       </chakra.span>{" "}
                       forks 🍴
                     </LinkBox>
@@ -219,9 +218,10 @@ const Repository = ({ data }) => {
         <Accordion>
           <AccordionItem>
             <h2>
-              <AccordionButton>
+              <AccordionButton onClick={fetchRepositoryData}>
                 <Box flex="1" textAlign={"left"}>
                   {/* TODO */}
+                  {console.log(readme)}
                 </Box>
                 <AccordionIcon />
               </AccordionButton>

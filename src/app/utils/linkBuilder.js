@@ -1,5 +1,6 @@
 /**
  *
+ *
  * @param {Number} stars
  * @param {"desc"|"asc"} order
  * @param {Number} per_page
@@ -7,7 +8,7 @@
  * @returns
  */
 
-export const generateApiUrl = (
+export const linkBuilder = (
   query = "",
   stars = 1000,
   order = "desc",

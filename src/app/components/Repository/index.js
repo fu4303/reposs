@@ -7,7 +7,15 @@ import { Box } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { Badge } from "@chakra-ui/react";
-// import { GoRepoForked, GoIssueOpened, GoStar } from "react-icons/go";
+import { getRepoLangs, getRepos, getRepoReadme } from "../../api/api";
+import { useEffect, useState } from "react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
 
 const LinkBox = ({ href: url, children }) => {
   return (
@@ -38,12 +46,31 @@ const LinkBox = ({ href: url, children }) => {
   );
 };
 
+// ! TODO: Continue working on this
 const Repository = ({ data }) => {
   const average_grade =
     data?.stargazers_count +
     data?.forks_count +
     data?.watchers +
     data?.open_issues_count / 4;
+
+  const [readme, setReadme] = useState(""); // We're returning the converted string
+  const [fetching, setFetching] = useState(true);
+  const [languages, setLanguages] = useState([]);
+
+  // For fetching all of the repository data
+  const fetchRepositoryData = async () => {
+    const [repoLanguages, repoReadme] = await Promise.all([
+      getRepoLangs(),
+      getRepoReadme(),
+    ]);
+
+    return () => {
+      setReadme(repoReadme);
+      setLanguages(repoLanguages);
+      setFetching(false);
+    };
+  };
 
   return (
     <Box
@@ -72,11 +99,13 @@ const Repository = ({ data }) => {
                     rel={"noopener noreferrer"}
                     href={data?.owner.html_url}
                   >
+                    {/* Repository owner image container */}
                     <Avatar
                       size={"md"}
                       _hover={{
                         opacity: 0.6,
                       }}
+                      name={data?.owner?.login}
                       transition={"all 0.2s ease-in-out"}
                       borderRadius={"full"}
                       src={data?.owner?.avatar_url}
@@ -96,12 +125,16 @@ const Repository = ({ data }) => {
                     color={"blue.400"}
                     href={data?.html_url}
                   >
+                    {/* Repository short name container */}
                     <Text fontSize={["sm", "lg", "xl"]} fontWeight={"bold"}>
+                      {/* Name */}
                       {data?.name}
+                      {/* If the repo is trending add a fire to the text */}
                       {average_grade >= 400 * 1000 && "🔥"}
                     </Text>
                   </chakra.a>
 
+                  {/* If the repository owner is an organization show a badge */}
                   {data?.owner?.type === "Organization" && (
                     <Badge
                       colorScheme={"blue"}
@@ -114,6 +147,7 @@ const Repository = ({ data }) => {
                     </Badge>
                   )}
 
+                  {/* Repository full name container */}
                   <Text
                     color={"gray.500"}
                     fontSize={["x-small", "xs"]}
@@ -123,6 +157,7 @@ const Repository = ({ data }) => {
                   </Text>
                 </Box>
 
+                {/* Repository description container */}
                 <Box>
                   <Text fontSize={["xs", "sm"]} fontWeight={"semibold"}>
                     {data?.description}
@@ -131,7 +166,7 @@ const Repository = ({ data }) => {
 
                 <Box>
                   <Stack direction={["column", "row"]}>
-                    {/* Issues Container */}
+                    {/* Issues container */}
                     <LinkBox href={`${data?.html_url}/issues`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.open_issues_count}
@@ -139,7 +174,7 @@ const Repository = ({ data }) => {
                       open issues 🚨
                     </LinkBox>
 
-                    {/* Stargazers Container */}
+                    {/* Stargazers container */}
                     <LinkBox href={`${data?.html_url}/stargazers`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.stargazers_count}
@@ -147,18 +182,27 @@ const Repository = ({ data }) => {
                       stars ⭐
                     </LinkBox>
 
-                    {/* Forks Container */}
+                    {/* Forks container */}
                     <LinkBox href={`${data?.html_url}/network/members`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.forks_count}
                       </chakra.span>{" "}
                       forks 🍴
                     </LinkBox>
+
+                    {/* Watchers container */}
                     <LinkBox href={`${data?.html_url}/watchers`}>
                       <chakra.span fontWeight={"bold"}>
                         {data?.watchers}
                       </chakra.span>{" "}
                       watchers 👀
+                    </LinkBox>
+
+                    {/* Deployments container */}
+                    <LinkBox href={`${data?.html_url}/deployments`}>
+                      <chakra.span fontWeight={"bold"}>
+                        Deployments ☁
+                      </chakra.span>
                     </LinkBox>
                   </Stack>
                 </Box>
@@ -166,6 +210,21 @@ const Repository = ({ data }) => {
             </Box>
           </Stack>
         </Box>
+
+        {/* Other info accordion */}
+        <Accordion>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex="1" textAlign={"left"}>
+                  {/* TODO */}
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>{/* TODO */}</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </Box>
     </Box>
   );

@@ -15,7 +15,7 @@ import { chakra } from "@chakra-ui/system";
 import { Link } from "react-router-dom";
 import { Image } from "@chakra-ui/image";
 import { Tooltip } from "@chakra-ui/tooltip";
-import { generateApiUrl } from "../utils/generateApiUrl";
+import { linkBuilder } from "../utils/linkBuilder";
 
 let currentPage = 0;
 
@@ -29,7 +29,7 @@ const MainPage = () => {
   fetchRepos.current = async () => {
     try {
       // Request to GitHub API
-      const { data } = await axios.get(generateApiUrl());
+      const { data } = await axios.get(linkBuilder());
       // Paginating the response
       const paginated = paginate(data?.items);
       // Setting the repos
@@ -73,7 +73,7 @@ const MainPage = () => {
       // Setting filtered repos
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     } else {
-      const { data } = await axios.get(generateApiUrl("", 1000, "desc", 20));
+      const { data } = await axios.get(linkBuilder("", 1000, "desc", 20));
       setRepos([...repos, ...paginate(data?.items)]);
       setFilteredRepos(filteredRepos.concat(repos[currentPage]));
     }

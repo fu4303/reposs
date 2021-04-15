@@ -7,7 +7,7 @@ import { Center } from "@chakra-ui/layout";
 import axios from "axios";
 // import { Tooltip } from "@chakra-ui/tooltip";
 import { RiFilter3Line, RiSearch2Line } from "react-icons/ri";
-import { generateApiUrl } from "../../utils/generateApiUrl";
+import { linkBuilder } from "../../utils/linkBuilder";
 import { paginate } from "../../utils/paginate";
 import { shuffle } from "lodash";
 
@@ -53,9 +53,7 @@ const Search = ({
         // Update fetching status
         setFetching(true);
         // Send an http request to github api
-        const { data } = await axios.get(
-          generateApiUrl(query, 1000, "desc", 20)
-        );
+        const { data } = await axios.get(linkBuilder(query, 1000, "desc", 20));
         // Update fetching status
         setFetching(false);
 

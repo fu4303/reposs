@@ -79,8 +79,6 @@ const MainPage = () => {
     }
   });
 
-  console.log({ repos, filteredRepos, currentPage });
-
   return (
     <MainLayout>
       <Box>

@@ -6,16 +6,20 @@ import { Text } from "@chakra-ui/layout";
 import { Box } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import { Tooltip } from "@chakra-ui/tooltip";
-import { Badge } from "@chakra-ui/react";
-import { getRepoLangs, getRepos, getRepoReadme } from "../../api/api";
-import { useEffect, useState } from "react";
 import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+  Badge,
+  // Spinner
 } from "@chakra-ui/react";
+// import { getRepoLangs, getRepoReadme } from "../../api/api";
+// import { useState } from "react";
+// import ReactMD from "react-markdown";
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionButton,
+//   AccordionPanel,
+//   AccordionIcon,
+// } from "@chakra-ui/react";
 
 const LinkBox = ({ href: url, children }) => {
   return (
@@ -46,7 +50,6 @@ const LinkBox = ({ href: url, children }) => {
   );
 };
 
-// ! TODO: Continue working on this
 const Repository = ({ data }) => {
   const average_grade =
     data?.stargazers_count +
@@ -54,23 +57,21 @@ const Repository = ({ data }) => {
     data?.watchers +
     data?.open_issues_count / 4;
 
-  const [readme, setReadme] = useState(""); // We're returning the converted string
-  const [fetching, setFetching] = useState(true);
-  const [languages, setLanguages] = useState([]);
+  // const [readme, setReadme] = useState("");
+  // const [fetching, setFetching] = useState(true);
+  // const [languages, setLanguages] = useState({});
 
   // For fetching all of the repository data
-  const fetchRepositoryData = async () => {
-    const [repoLanguages, repoReadme] = await Promise.all([
-      getRepoLangs(data?.name, data?.owner.login),
-      getRepoReadme(data?.name, data?.owner.login),
-    ]);
+  // const fetchRepositoryData = async () => {
+  //   const [repoLanguages, repoReadme] = await Promise.all([
+  //     getRepoLangs(data?.name, data?.owner.login),
+  //     getRepoReadme(data?.name, data?.owner.login),
+  //   ]);
 
-    return () => {
-      setReadme(repoReadme);
-      setLanguages(repoLanguages);
-      setFetching(false);
-    };
-  };
+  //   setFetching(false);
+  //   setReadme(repoReadme);
+  //   setLanguages(repoLanguages);
+  // };
 
   return (
     <Box
@@ -81,7 +82,7 @@ const Repository = ({ data }) => {
       p={5}
       _hover={{
         boxShadow: "lg",
-        transform: "translateY(-10px)",
+        // transform: "translateY(-10px)",
       }}
       transition={"ease-in-out 150ms"}
       // bgColor={useColorModeValue("gray.50", "gray.900")}
@@ -190,45 +191,18 @@ const Repository = ({ data }) => {
                       forks 🍴
                     </LinkBox>
 
-                    {/* Watchers container */}
-                    {/* <LinkBox href={`${data?.html_url}/watchers`}>
-                      <chakra.span fontWeight={"bold"}>
-                        {data?.watchers}
-                      </chakra.span>{" "}
-                      watchers 👀
-                    </LinkBox> */}
-
-                    {/* // ! BUG: Github API v3 does not return the watch count, the watchers value is the same as the stars.
-                    // Github API only gives subscribers_count on users, not repos */}
-
                     {/* Deployments container */}
-                    <LinkBox href={`${data?.html_url}/deployments`}>
+                    {/* <LinkBox href={`${data?.html_url}/deployments`}>
                       <chakra.span fontWeight={"bold"}>
                         Deployments ☁
                       </chakra.span>
-                    </LinkBox>
+                    </LinkBox> */}
                   </Stack>
                 </Box>
               </Stack>
             </Box>
           </Stack>
         </Box>
-
-        {/* Other info accordion */}
-        <Accordion>
-          <AccordionItem>
-            <h2>
-              <AccordionButton onClick={fetchRepositoryData}>
-                <Box flex="1" textAlign={"left"}>
-                  {/* TODO */}
-                  {console.log(readme)}
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>{/* TODO */}</AccordionPanel>
-          </AccordionItem>
-        </Accordion>
       </Box>
     </Box>
   );
